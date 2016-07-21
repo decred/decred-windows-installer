@@ -105,10 +105,10 @@ msi: paymetheus_common.wxs wixlib
 
 cleanobjs:
 	rm -f *.wixobj *.wixpdb staging/*.wxs
-	git clean -xdf
 
 clean: cleanobjs
 	rm -rf staging
 	rm -f paymetheus*.wixlib paymetheus*.msm paymetheus*.msi
+	git clean -xdf
 
 .PHONY: all current stage harvest wixlib msm msi wixlib64 msm64 msi64 cleanobjs clean
