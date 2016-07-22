@@ -2,8 +2,8 @@
 
 # setup paths
 SCRIPT=$(basename $0)
-SCRIPT_DIR=$(dirname $0)
-CERTFILE=$SCRIPT_DIR/company0-sign.p12
+SCRIPT_DIR=~/digicert
+CERTFILE=$SCRIPT_DIR/digicert-company0.p12
 CERTPWFILE=$SCRIPT_DIR/certpw
 
 # verify params
