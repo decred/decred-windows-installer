@@ -1,5 +1,5 @@
 # only 3 digits are used, and must increment for upgrades to work
-VERS=0.2.0
+VERS=0.3.0
 VERNAME=$(VERS)-alpha
 INSTALLERNAME="Dcrd Installer"
 
