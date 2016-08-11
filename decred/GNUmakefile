@@ -2,10 +2,11 @@
 VERS=0.3.0
 VERNAME=$(VERS)-alpha
 INSTALLERNAME="Decred Installer"
+MANIFEST=manifest-paymetheus-v
 
-all: msi msi64 cleanobjs
+all: msi msi64 sha cleanobjs
 
-current: msi msi64 cleanobjs
+current: msi msi64 sha cleanobjs
 
 TOOLSDIR=../tools
 
@@ -19,6 +20,10 @@ LIGHT="$(WIXDIR)/light.exe"
 update:
 
 stage:
+
+sha:
+	sha256sum decred_$(VERNAME)_x86.msi > $(MANIFEST)$(VERS).txt
+	sha256sum decred_$(VERNAME)_x64.msi >> $(MANIFEST)$(VERS).txt
 
 msi: decred.wxs stage
 	$(CANDLE) -nologo -arch x86 -dVersion="$(VERS)" -o decred_x86.wixobj \
@@ -43,5 +48,6 @@ cleanobjs:
 
 clean: cleanobjs
 	rm -f decred*.msi
+	rm -f $(MANIFEST)*.txt
 
 .PHONY: all current msi msi64
