@@ -48,5 +48,6 @@ cleanobjs:
 
 clean: cleanobjs
 	rm -f decred*.msi
+	rm -f $(MANIFEST)*.txt
 
 .PHONY: all current msi msi64
