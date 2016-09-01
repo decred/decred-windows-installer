@@ -10,7 +10,6 @@ TOOLSDIR=../tools
 
 # Support files
 PROJFILES=ticketbuyer-example.conf
-PROJFILES+=webui
 
 # Wix executables
 WIXDIR=$(WIX)bin
