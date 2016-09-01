@@ -59,10 +59,8 @@
     <!-- use a stock dialog set -->
     <Property Id="WIXUI_INSTALLDIR" Value="PAYMETHEUSROOT" />
     <UIRef Id="WixUI_Minimal" />
-    <!--
-    <Icon Id="icon" SourceFile="paymetheus.ico"/>
+    <Icon Id="icon" SourceFile="dcr_logo.ico"/>
     <Property Id="ARPPRODUCTICON" Value="icon" />
-    -->
     <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
     <WixVariable Id="WixUIBannerBmp" Value="banner.bmp" />
     <WixVariable Id="WixUIDialogBmp" Value="dialog.bmp" />
