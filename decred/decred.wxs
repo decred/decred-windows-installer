@@ -37,9 +37,6 @@
           <Directory Id="DCRDROOT" Name="Dcrd" />
           <Directory Id="PAYMETHEUSROOT" Name="Paymetheus" />
           <Directory Id="DCRTROOT" Name="Dcrticketbuyer" />
-          <Component Id="DCRDSuiteBat">
-            <File Id="dcrd.bat" Name="dcrd.bat" Source="dcrd.bat" KeyPath="yes" />
-          </Component>
         </Directory>
       </Directory>
     </Directory>
@@ -48,18 +45,13 @@
       <!-- Start Menu -->
       <Directory Id="ProgramMenuFolder">
         <Directory Id="AppProgramMenuFolder" Name="Decred">
-          <!-- start menu shortcut -->
-          <Component Id="DecredShortcuts" Guid="75f30a12-0956-47c5-b58c-820af5427899">
-            <Shortcut Id="DecredSuite" Name="dcrd"
-             Target="[%ComSpec]" Arguments='/C "[APPSUITEDIR]\dcrd.bat"'
-             WorkingDirectory="APPSUITEDIR" />
-            <RemoveFolder Id="AppProgramMenuFolder" On="uninstall" />
-            <RegistryValue Root="HKCU" Key="SOFTWARE\Company 0\Decred"
-             Name="installed" Value="1" Type="integer" KeyPath="yes" />
-	  </Component>
-
+	  <!-- start menu shortcut -->
 	  <Component Id="PaymetheusShortcuts" Guid="4b253bce-3b7b-4cc0-8c6c-db1e4b4b69d6">
-            <Shortcut Id="PaymetheusSuite" Name="Paymetheus"
+            <RemoveFolder Id="AppProgramMenuFolder" On="uninstall" />
+            <Shortcut Id="LauncherSuite" Name="Decred"
+             Target="[PAYMETHEUSROOT]\Launcher.exe"
+             WorkingDirectory="PAYMETHEUSROOT" />
+            <Shortcut Id="PaymetheusSuite" Name="Paymetheus Standalone"
              Target="[PAYMETHEUSROOT]\Paymetheus.exe"
              WorkingDirectory="PAYMETHEUSROOT" />
             <RegistryValue Root="HKCU" Key="SOFTWARE\Company 0\Paymetheus"
@@ -74,27 +66,23 @@
     <UI>
       <UIRef Id="WixUI_FeatureTree" />
     </UI>
-    <!--
-    <Icon Id="icon" SourceFile="decred.ico"/>
+    <Icon Id="icon" SourceFile="dcr_logo.ico"/>
     <Property Id="ARPPRODUCTICON" Value="icon" />
-    -->
     <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
     <WixVariable Id="WixUIBannerBmp" Value="banner.bmp" />
     <WixVariable Id="WixUIDialogBmp" Value="dialog.bmp" />
 
     <!-- features -->
-    <Feature Id="Dcrd" Title="Dcrd (Chain Services)" Level="1" AllowAdvertise="no"
-     Description="Dcrd downloads and keeps you in sync with the Decred block chain and provides backend chain services for dcrwallet.">
-      <ComponentGroupRef Id="DCRDCore" />
-      <ComponentRef Id="DCRDSuiteBat" />
-      <ComponentRef Id="DecredShortcuts" />
-      <!-- <ComponentRef Id="DCRDConf" /> -->
-    </Feature>
     <Feature Id="Paymetheus" Title="Paymetheus (Wallet)" Level="1"  AllowAdvertise="no"
      Description="Paymetheus is the native Windows Decred wallet.">
       <ComponentGroupRef Id="PaymetheusCore" />
       <ComponentRef Id="PaymetheusShortcuts" />
       <!-- <ComponentRef Id="DCRWConf" /> -->
+    </Feature>
+    <Feature Id="Dcrd" Title="Dcrd (Chain Services)" Level="1" AllowAdvertise="no"
+     Description="Dcrd downloads and keeps you in sync with the Decred block chain and provides backend chain services for dcrwallet.">
+      <ComponentGroupRef Id="DCRDCore" />
+      <!-- <ComponentRef Id="DCRDConf" /> -->
     </Feature>
     <Feature Id="Dcrticketbuyer" Title="Dcrticketbuyer (Ticket Buyer)" Level="1"  AllowAdvertise="no"
      Description="Dcrticketbuyer is a service + web GUI to buy tickets.">
