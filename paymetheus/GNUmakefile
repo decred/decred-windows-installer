@@ -1,6 +1,6 @@
 # only 3 digits are used, and must increment for upgrades to work
-VERS=0.3.0
-VERNAME=$(VERS)-alpha
+VERS=0.4.0
+VERNAME=$(VERS)-beta
 INSTALLERNAME="Paymetheus Installer"
 
 # Path to project and executables
@@ -11,12 +11,12 @@ MSBUILD=/c/Program\ Files\ \(x86\)/MSBuild/14.0/Bin/MSbuild.exe
 NUGET=~/bin/nuget.exe
 
 # Support files
-PROJFILES=Paymetheus/bin/x86/Release/*.exe
-PROJFILES+=Paymetheus/bin/x86/Release/*.dll
-PROJFILES+=Paymetheus/bin/x86/Release/nativelibs
-PROJFILES64=Paymetheus/bin/x64/Release/*.exe
-PROJFILES64+=Paymetheus/bin/x64/Release/*.dll
-PROJFILES64+=Paymetheus/bin/x64/Release/nativelibs
+PROJFILES=Launcher/bin/x86/Release/*.exe
+PROJFILES+=Launcher/bin/x86/Release/*.dll
+PROJFILES+=Launcher/bin/x86/Release/nativelibs
+PROJFILES64=Launcher/bin/x64/Release/*.exe
+PROJFILES64+=Launcher/bin/x64/Release/*.dll
+PROJFILES64+=Launcher/bin/x64/Release/nativelibs
 PROJWALLET=github.com/decred/dcrwallet
 
 # Wix executables

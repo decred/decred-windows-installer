@@ -1,6 +1,6 @@
 # only 3 digits are used, and must increment for upgrades to work
-VERS=0.3.0
-VERNAME=$(VERS)-alpha
+VERS=0.4.0
+VERNAME=$(VERS)-beta
 INSTALLERNAME="DCRTicketbuyer Installer"
 
 # Path to project and executables
@@ -10,7 +10,6 @@ TOOLSDIR=../tools
 
 # Support files
 PROJFILES=ticketbuyer-example.conf
-PROJFILES+=webui
 
 # Wix executables
 WIXDIR=$(WIX)bin
