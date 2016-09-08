@@ -3,14 +3,14 @@ Each component must have a digest set that contains the required version of
 said component.  The build system will checkout and glide install all
 dependencies.
 
-There are 3 components (dcrd, dcrticketbuyer and paymetheus) that make up the
+There are 2 components (dcrticketbuyer and paymetheus) that make up the
 decred msi.  Individual components can be made, installed and tested in their
 respective directories.
 
 Additionally, individual component versions and release type (alpha, beta, rc &
 release) must be set in the individual compent directory GNUmakefiles.
 Run something along the lines of:
-$ for i in dcrd dcrticketbuyer paymetheus decred; do vi $i/GNUmakefile; done
+$ for i in dcrticketbuyer paymetheus decred; do vi $i/GNUmakefile; done
 ...
 and change the following lines:
 VERS=0.6.0
@@ -29,10 +29,10 @@ $ l decred/*.msi
 -rw-r--r-- 1 marco None 30904320 Jul 15 10:28 decred/decred_0.6.0-beta_x64.msi
 -rw-r--r-- 1 marco None 30203904 Jul 15 10:28 decred/decred_0.6.0-beta_x86.msi
 
-Individual msis can be found in their respective directories.  For example dcrd msis:
-$ l dcrd/*.msi
--rw-r--r-- 1 marco None 10653696 Jul 15 10:25 dcrd/dcrd_standalone_0.6.0-beta_x64.msi
--rw-r--r-- 1 marco None 10317824 Jul 15 10:25 dcrd/dcrd_standalone_0.6.0-beta_x86.msi
+Individual msis can be found in their respective directories.  For example dcrticketbuyer msis:
+$ l dcrticketbuyer/*.msi
+-rw-r--r-- 1 marco None 10653696 Jul 15 10:25 dcrticketbuyer/dcrticketbuyer_standalone_0.6.0-beta_x64.msi
+-rw-r--r-- 1 marco None 10317824 Jul 15 10:25 dcrticketbuyer/dcrticketbuyer_standalone_0.6.0-beta_x86.msi
 
 If you want to create the latest and greatest of everything you must use the
 "current" target.  Creating current msi example:

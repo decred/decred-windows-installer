@@ -29,18 +29,18 @@ msi: decred.wxs stage
 	$(CANDLE) -nologo -arch x86 -dVersion="$(VERS)" -o decred_x86.wixobj \
 	    decred.wxs
 	$(LIGHT) -nologo -o decred_$(VERNAME)_x86.msi decred_x86.wixobj \
-	    ../dcrd/*_x86.wixlib ../dcrticketbuyer/*_x86.wixlib ../paymetheus/*_x86.wixlib \
+	     ../dcrticketbuyer/*_x86.wixlib ../paymetheus/*_x86.wixlib \
 	     -ext WixUIExtension -ext WixUtilExtension -b . -b ../resource \
-	     -b ../dcrd -b ../dcrticketbuyer -b ../paymetheus
+	     -b ../dcrticketbuyer -b ../paymetheus
 	sh "$(TOOLSDIR)/sign.sh" $(INSTALLERNAME) "$(CURDIR)/*.msi"
 
 msi64: decred.wxs stage
 	$(CANDLE) -nologo -arch x64 -dVersion="$(VERS)" -o decred_x64.wixobj \
 	    decred.wxs
 	$(LIGHT) -nologo -o decred_$(VERNAME)_x64.msi decred_x64.wixobj \
-	    ../dcrd/*_x64.wixlib ../dcrticketbuyer/*_x64.wixlib ../paymetheus/*_x64.wixlib \
+	     ../dcrticketbuyer/*_x64.wixlib ../paymetheus/*_x64.wixlib \
 	     -ext WixUIExtension -ext WixUtilExtension -b . -b ../resource \
-	     -b ../dcrd -b ../dcrticketbuyer -b ../paymetheus
+	     -b ../dcrticketbuyer -b ../paymetheus
 	sh "$(TOOLSDIR)/sign.sh" $(INSTALLERNAME) "$(CURDIR)/*.msi"
 
 cleanobjs:
