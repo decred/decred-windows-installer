@@ -34,7 +34,6 @@
         <!-- app suite install dir -->
         <Directory Id="APPSUITEDIR" Name="Decred">
           <!-- app install dirs -->
-          <Directory Id="DCRDROOT" Name="Dcrd" />
           <Directory Id="PAYMETHEUSROOT" Name="Paymetheus" />
           <Directory Id="DCRTROOT" Name="Dcrticketbuyer" />
         </Directory>
@@ -78,11 +77,6 @@
       <ComponentGroupRef Id="PaymetheusCore" />
       <ComponentRef Id="PaymetheusShortcuts" />
       <!-- <ComponentRef Id="DCRWConf" /> -->
-    </Feature>
-    <Feature Id="Dcrd" Title="Dcrd (Chain Services)" Level="1" AllowAdvertise="no"
-     Description="Dcrd downloads and keeps you in sync with the Decred block chain and provides backend chain services for dcrwallet.">
-      <ComponentGroupRef Id="DCRDCore" />
-      <!-- <ComponentRef Id="DCRDConf" /> -->
     </Feature>
     <Feature Id="Dcrticketbuyer" Title="Dcrticketbuyer (Ticket Buyer)" Level="1"  AllowAdvertise="no"
      Description="Dcrticketbuyer is a service + web GUI to buy tickets.">

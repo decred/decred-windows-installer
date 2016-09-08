@@ -18,6 +18,7 @@ PROJFILES64=Launcher/bin/x64/Release/*.exe
 PROJFILES64+=Launcher/bin/x64/Release/*.dll
 PROJFILES64+=Launcher/bin/x64/Release/nativelibs
 PROJWALLET=github.com/decred/dcrwallet
+PROJDCRD=github.com/decred/dcrd
 
 # Wix executables
 WIXDIR=$(WIX)bin
@@ -32,11 +33,12 @@ current: msi cleanobjs
 
 stage:
 	rm -rf staging
-	mkdir staging staging/common staging/x86 staging/x64
-	touch staging/common/deleteme
+	mkdir -p staging/common staging/x86 staging/x64
 	cd $(PAYMETHEUS) && $(NUGET) restore Paymetheus-Dcr.sln
 	cd $(PAYMETHEUS) && $(MSBUILD) -p:Configuration=Release -p:Platform=x86
 	cd $(PAYMETHEUS) && $(MSBUILD) -p:Configuration=Release -p:Platform=x64
+	(cd staging/x86 && GOARCH=386 go build $(PROJDCRD))
+	(cd staging/x64 && GOARCH=amd64 go build $(PROJDCRD))
 	(cd staging/x86 && GOARCH=386 go build $(PROJWALLET))
 	(cd staging/x64 && GOARCH=amd64 go build $(PROJWALLET))
 	$(foreach PROG,$(PROJFILES),cp -r $(PAYMETHEUS)/$(PROG) staging/x86/;)
@@ -44,7 +46,7 @@ stage:
 	sh "$(TOOLSDIR)/sign-staging.sh" "$(CURDIR)/staging/x86/*.exe" "$(CURDIR)/staging/x64/*.exe"
 
 harvest: stage
-	$(HEAT) dir staging/common -nologo -gg -cg PaymetheusCommonFiles -sreg -sfrag \
+	$(HEAT) dir staging/common -nologo -ke -gg -cg PaymetheusCommonFiles -sreg -sfrag \
 	    -srd -suid -dr PAYMETHEUSROOT -var var.SourceDir -out staging/paymetheusproj.wxs
 	$(HEAT) dir staging/x86 -nologo -gg -cg PAYMETHEUSArchFiles -sreg -sfrag -srd -suid \
 	    -dr PAYMETHEUSROOT -var var.SourceDir -out staging/paymetheusarch_x86.wxs
