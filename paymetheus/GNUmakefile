@@ -19,6 +19,7 @@ PROJFILES64+=Launcher/bin/x64/Release/*.dll
 PROJFILES64+=Launcher/bin/x64/Release/nativelibs
 PROJWALLET=github.com/decred/dcrwallet
 PROJDCRD=github.com/decred/dcrd
+PROJCONF=$(GOPATH)/src/$(PROJDCRD)/sample-dcrd.conf
 
 # Wix executables
 WIXDIR=$(WIX)bin
@@ -43,6 +44,8 @@ stage:
 	(cd staging/x64 && GOARCH=amd64 go build $(PROJWALLET))
 	$(foreach PROG,$(PROJFILES),cp -r $(PAYMETHEUS)/$(PROG) staging/x86/;)
 	$(foreach PROG,$(PROJFILES64),cp -r $(PAYMETHEUS)/$(PROG) staging/x64/;)
+	cp $(PROJCONF) staging/x86/
+	cp $(PROJCONF) staging/x64/
 	sh "$(TOOLSDIR)/sign-staging.sh" "$(CURDIR)/staging/x86/*.exe" "$(CURDIR)/staging/x64/*.exe"
 
 harvest: stage
