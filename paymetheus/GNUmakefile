@@ -19,6 +19,7 @@ PROJFILES64+=Launcher/bin/x64/Release/*.dll
 PROJFILES64+=Launcher/bin/x64/Release/nativelibs
 PROJWALLET=github.com/decred/dcrwallet
 PROJDCRD=github.com/decred/dcrd
+PROJDCRCTL=$(PROJDCRD)/cmd/dcrctl
 PROJCONF=$(GOPATH)/src/$(PROJDCRD)/sample-dcrd.conf
 
 # Wix executables
@@ -40,6 +41,8 @@ stage:
 	cd $(PAYMETHEUS) && $(MSBUILD) -p:Configuration=Release -p:Platform=x64
 	(cd staging/x86 && GOARCH=386 go build $(PROJDCRD))
 	(cd staging/x64 && GOARCH=amd64 go build $(PROJDCRD))
+	(cd staging/x86 && GOARCH=386 go build $(PROJDCRCTL))
+	(cd staging/x64 && GOARCH=amd64 go build $(PROJDCRCTL))
 	(cd staging/x86 && GOARCH=386 go build $(PROJWALLET))
 	(cd staging/x64 && GOARCH=amd64 go build $(PROJWALLET))
 	$(foreach PROG,$(PROJFILES),cp -r $(PAYMETHEUS)/$(PROG) staging/x86/;)
