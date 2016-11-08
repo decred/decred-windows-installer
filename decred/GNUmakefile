@@ -1,5 +1,5 @@
 # only 3 digits are used, and must increment for upgrades to work
-VERS=0.5.0
+VERS=0.6.0
 VERNAME=$(VERS)-beta
 INSTALLERNAME="Decred Installer"
 MANIFEST=manifest-paymetheus-v
