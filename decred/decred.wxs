@@ -35,7 +35,6 @@
         <Directory Id="APPSUITEDIR" Name="Decred">
           <!-- app install dirs -->
           <Directory Id="PAYMETHEUSROOT" Name="Paymetheus" />
-          <Directory Id="DCRTROOT" Name="Dcrticketbuyer" />
         </Directory>
       </Directory>
     </Directory>
@@ -85,11 +84,6 @@
       <ComponentGroupRef Id="PaymetheusCore" />
       <ComponentRef Id="PaymetheusShortcuts" />
       <!-- <ComponentRef Id="DCRWConf" /> -->
-    </Feature>
-    <Feature Id="Dcrticketbuyer" Title="Dcrticketbuyer (Ticket Buyer)" Level="1"  AllowAdvertise="no"
-     Description="Dcrticketbuyer is a service + web GUI to buy tickets.">
-      <ComponentGroupRef Id="DCRTicketbuyerCore" />
-      <!-- <ComponentRef Id="DCRTConf" /> -->
     </Feature>
   </Product>
 </Wix>
