@@ -1,6 +1,5 @@
 DCRD=github.com/decred/dcrd
 DCRWALLET=github.com/decred/dcrwallet
-DCRTICKETBUYER=github.com/decred/dcrticketbuyer
 
 PAYMETHEUSPATH=~/git/Paymetheus
 
@@ -16,15 +15,11 @@ ifndef DCRWALLETDIGEST
 $(error DCRWALLETDIGEST not set)
 endif
 
-ifndef DCRTICKETBUYERDIGEST
-$(error DCRTICKETBUYERDIGEST not set)
-endif
-
-all: paymetheus dcrd dcrwallet dcrticketbuyer
+all: paymetheus dcrd dcrwallet
 
 clean:
 
-current: $(PAYMETHEUSPATH) $(GOPATH)/src/$(DCRD) $(GOPATH)/src/$(DCRWALLET) $(GOPATH)/src/$(DCRTICKETBUYER)
+current: $(PAYMETHEUSPATH) $(GOPATH)/src/$(DCRD) $(GOPATH)/src/$(DCRWALLET)
 	# paymetheus
 	cd $(PAYMETHEUSPATH)/ && git clean -xdf
 	cd $(PAYMETHEUSPATH)/ && git checkout master
@@ -37,10 +32,6 @@ current: $(PAYMETHEUSPATH) $(GOPATH)/src/$(DCRD) $(GOPATH)/src/$(DCRWALLET) $(GO
 	cd $(GOPATH)/src/$(DCRWALLET) && git checkout master
 	cd $(GOPATH)/src/$(DCRWALLET) && git pull --ff
 	cd $(GOPATH)/src/$(DCRWALLET) && glide install
-	# ticketbuyer
-	cd $(GOPATH)/src/$(DCRTICKETBUYER) && git checkout master
-	cd $(GOPATH)/src/$(DCRTICKETBUYER) && git pull --ff
-	cd $(GOPATH)/src/$(DCRTICKETBUYER) && glide install
 
 paymetheus: $(PAYMETHEUSPATH)
 	cd $(PAYMETHEUSPATH)/ && git clean -xdf
@@ -69,13 +60,4 @@ dcrwallet: $(GOPATH)/src/$(DCRWALLET)
 $(GOPATH)/src/$(DCRWALLET):
 	cd `dirname $(GOPATH)/src/$(DCRWALLET)` && git clone https://github.com/decred/`basename $(DCRWALLET)`.git
 
-dcrticketbuyer: $(GOPATH)/src/$(DCRTICKETBUYER)
-	cd $(GOPATH)/src/$(DCRTICKETBUYER) && git checkout master
-	cd $(GOPATH)/src/$(DCRTICKETBUYER) && git pull --ff
-	cd $(GOPATH)/src/$(DCRTICKETBUYER) && git checkout $(DCRTICKETBUYERDIGEST)
-	cd $(GOPATH)/src/$(DCRTICKETBUYER) && glide install
-
-$(GOPATH)/src/$(DCRTICKETBUYER):
-	cd `dirname $(GOPATH)/src/$(DCRTICKETBUYER)` && git clone https://github.com/decred/`basename $(DCRTICKETBUYER)`.git
-
-.PHONY: all clean dcrd dcrwallet dcrticketbuyer paymetheus
+.PHONY: all clean dcrd dcrwallet paymetheus
