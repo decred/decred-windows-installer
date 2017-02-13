@@ -53,6 +53,14 @@
             <Shortcut Id="PaymetheusSuite" Name="Paymetheus Standalone"
              Target="[PAYMETHEUSROOT]\Paymetheus.exe"
              WorkingDirectory="PAYMETHEUSROOT" />
+            <Shortcut Id="LauncherSuiteTestnet" Name="Decred Testnet"
+             Target="[PAYMETHEUSROOT]\Launcher.exe"
+             Arguments="-testnet"
+             WorkingDirectory="PAYMETHEUSROOT" />
+            <Shortcut Id="PaymetheusSuiteTestnet" Name="Paymetheus Standalone Testnet"
+	     Target="[PAYMETHEUSROOT]\Paymetheus.exe"
+             Arguments="-testnet"
+             WorkingDirectory="PAYMETHEUSROOT" />
             <RegistryValue Root="HKCU" Key="SOFTWARE\Company 0\Paymetheus"
              Name="installed" Value="1" Type="integer" KeyPath="yes" />
           </Component>
