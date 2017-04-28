@@ -30,7 +30,7 @@ msi: decred.wxs stage
 	    decred.wxs
 	$(LIGHT) -nologo -o decred_$(VERNAME)_x86.msi decred_x86.wixobj \
 	     ../paymetheus/*_x86.wixlib \
-	     -ext WixUIExtension -ext WixUtilExtension -b . -b ../resource \
+	     -ext WixUIExtension -ext WixUtilExtension -b . -b ../decred \
 	     -b ../paymetheus
 	sh "$(TOOLSDIR)/sign.sh" $(INSTALLERNAME) "$(CURDIR)/*.msi"
 
@@ -39,7 +39,7 @@ msi64: decred.wxs stage
 	    decred.wxs
 	$(LIGHT) -nologo -o decred_$(VERNAME)_x64.msi decred_x64.wixobj \
 	     ../paymetheus/*_x64.wixlib \
-	     -ext WixUIExtension -ext WixUtilExtension -b . -b ../resource \
+	     -ext WixUIExtension -ext WixUtilExtension -b . -b ../decred \
 	     -b ../paymetheus
 	sh "$(TOOLSDIR)/sign.sh" $(INSTALLERNAME) "$(CURDIR)/*.msi"
 

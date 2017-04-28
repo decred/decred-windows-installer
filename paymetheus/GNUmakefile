@@ -88,12 +88,12 @@ msm: paymetheus_msm.wxs wixlib
 	$(CANDLE) -nologo -arch x86 -dVersion="$(VERS)" -o paymetheusmsm_x86.wixobj \
 	    paymetheus_msm.wxs
 	$(LIGHT) -nologo -o paymetheus_$(VERNAME)_x86.msm paymetheusmsm_x86.wixobj \
-	    paymetheus_$(VERNAME)_x86.wixlib -b . -b ../resource
+	    paymetheus_$(VERNAME)_x86.wixlib -b . -b ../decred
 #	x64
 	$(CANDLE) -nologo -arch x64 -dVersion="$(VERS)" -o paymetheusmsm_x64.wixobj \
 	    paymetheus_msm.wxs
 	$(LIGHT) -nologo -o paymetheus_$(VERNAME)_x64.msm paymetheusmsm_x64.wixobj \
-	    paymetheus_$(VERNAME)_x64.wixlib -b . -b ../resource
+	    paymetheus_$(VERNAME)_x64.wixlib -b . -b ../decred
 
 msi: paymetheus_common.wxs wixlib
 #	x86
@@ -101,13 +101,13 @@ msi: paymetheus_common.wxs wixlib
 	    -o paymetheus_standalone_x86.wixobj paymetheus_standalone.wxs
 	$(LIGHT) -nologo -o paymetheus_standalone_$(VERNAME)_x86.msi \
 	    paymetheus_standalone_x86.wixobj paymetheus_$(VERNAME)_x86.wixlib \
-	    -ext WixUIExtension -b . -b ../resource
+	    -ext WixUIExtension -b . -b ../decred
 #	x64
 	$(CANDLE) -nologo -arch x64 -dVersion="$(VERS)" \
 	    -o paymetheus_standalone_x64.wixobj paymetheus_standalone.wxs
 	$(LIGHT) -nologo -o paymetheus_standalone_$(VERNAME)_x64.msi \
 	    paymetheus_standalone_x64.wixobj paymetheus_$(VERNAME)_x64.wixlib \
-	    -ext WixUIExtension -b . -b ../resource
+	    -ext WixUIExtension -b . -b ../decred
 	sh "$(TOOLSDIR)/sign.sh" $(INSTALLERNAME) "$(CURDIR)/*.msi"
 
 
