@@ -39,12 +39,12 @@ stage:
 	cd $(PAYMETHEUS) && $(NUGET) restore Paymetheus-Dcr.sln
 	cd $(PAYMETHEUS) && $(MSBUILD) -p:Configuration=Release -p:Platform=x86
 	cd $(PAYMETHEUS) && $(MSBUILD) -p:Configuration=Release -p:Platform=x64
-	(cd staging/x86 && GOARCH=386 go build $(PROJDCRD))
-	(cd staging/x64 && GOARCH=amd64 go build $(PROJDCRD))
-	(cd staging/x86 && GOARCH=386 go build $(PROJDCRCTL))
-	(cd staging/x64 && GOARCH=amd64 go build $(PROJDCRCTL))
-	(cd staging/x86 && GOARCH=386 go build $(PROJWALLET))
-	(cd staging/x64 && GOARCH=amd64 go build $(PROJWALLET))
+	(cd staging/x86 && GOARCH=386 go build -ldflags "-X main.appBuild=release" $(PROJDCRD))
+	(cd staging/x64 && GOARCH=amd64 go build -ldflags "-X main.appBuild=release" $(PROJDCRD))
+	(cd staging/x86 && GOARCH=386 go build -ldflags "-X main.appBuild=release" $(PROJDCRCTL))
+	(cd staging/x64 && GOARCH=amd64 go build -ldflags "-X main.appBuild=release" $(PROJDCRCTL))
+	(cd staging/x86 && GOARCH=386 go build -ldflags "-X main.appBuild=release" $(PROJWALLET))
+	(cd staging/x64 && GOARCH=amd64 go build -ldflags "-X main.appBuild=release" $(PROJWALLET))
 	$(foreach PROG,$(PROJFILES),cp -r $(PAYMETHEUS)/$(PROG) staging/x86/;)
 	$(foreach PROG,$(PROJFILES64),cp -r $(PAYMETHEUS)/$(PROG) staging/x64/;)
 	cp $(PROJCONF) staging/x86/
