@@ -1,5 +1,5 @@
 # only 3 digits are used, and must increment for upgrades to work
-VERS=1.0.1
+VERS=1.0.3
 VERNAME=$(VERS)-release
 INSTALLERNAME="Paymetheus Installer"
 
